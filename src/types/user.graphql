@@ -1,0 +1,28 @@
+type User {
+  uuid: String,
+  email: String,
+  username: String,
+  firstName: String,
+  lastName: String,
+  photo: String,
+  avatar: String,
+  avatarSource: String,
+  avatarX: Float,
+  avatarY: Float,
+  avatarScale: Float,
+  logins: Int
+}
+
+input UserInput {
+  uuid: String,
+  email: String,
+  username: String,
+  password: String,
+  firstName: String,
+  lastName: String,
+  avatar: String,
+  avatarSource: String,
+  avatarX: Float,
+  avatarY: Float,
+  avatarScale: Float
+}

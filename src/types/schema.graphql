@@ -1,0 +1,10 @@
+type Query {
+  getUser(uuid: String): User,
+  checkPasswordResetCode(code: String): String
+}
+
+type Mutation {
+  updateUser(uuid: String, values: UserInput): User,
+  requestPasswordReset(email: String): String,
+  resetPassword(code: String, password: String): String
+}
