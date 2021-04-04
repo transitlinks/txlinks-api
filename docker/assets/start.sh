@@ -12,6 +12,7 @@ then
   else
     git pull
   fi
+  yarn install
   yarn build
 fi
 yarn start
