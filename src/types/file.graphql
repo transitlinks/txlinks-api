@@ -1,0 +1,12 @@
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+type FileUploadResponse {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String!
+}

@@ -12,6 +12,7 @@ export const getUser = async (_: any, { uuid }: any, context: any) => {
   try {
     if (context.user) {
       const user = await userRepository.getByUuid(context.user.uuid);
+      console.log('returning user', user?.json());
       return user?.json();
     }
     return null;

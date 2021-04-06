@@ -3,6 +3,7 @@ import expressSession from 'express-session';
 import pgSessionStore from 'connect-pg-simple';
 import { Pool } from 'pg';
 import { ApolloServer } from 'apollo-server-express';
+import { graphqlUploadExpress } from 'graphql-upload';
 import { ApolloServerPluginUsageReportingDisabled } from 'apollo-server-core';
 import { createServer } from 'http';
 import compression from 'compression';
@@ -38,6 +39,7 @@ app.use(expressSession({
 app.use("*", cors());
 app.use(helmet({ contentSecurityPolicy: (process.env.APP_ENV === 'stage') ? undefined : false }));
 app.use(compression());
+app.use('/v2/graphql', graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
 const getUser = async (req: any) => {
   const uuid = req.session?.passport?.user;
@@ -54,6 +56,7 @@ const server = new ApolloServer({
     key: process.env.APOLLO_KEY
   },
   plugins: [ApolloServerPluginUsageReportingDisabled()],
+  uploads: false,
   context: async ({ req }) => {
     const user = await getUser(req);
     return { user: user?.json() };
