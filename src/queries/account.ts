@@ -41,7 +41,8 @@ export const uploadAvatar = async (parent, args, { user }) => {
     if (type === 'source') {
       await userRepository.update(user.uuid, {
         avatarSource: mediaUrl,
-        avatar: mediaUrl
+        avatarX: 0.5,
+        avatarY: 0.5
       });
     } else if (type === 'scaled') {
       await userRepository.update(user.uuid, { avatar: mediaUrl });

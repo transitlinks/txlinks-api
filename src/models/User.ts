@@ -51,7 +51,8 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
       avatarSource: this.get('avatarSource'),
       avatarX: this.get('avatarX'),
       avatarY: this.get('avatarY'),
-      avatarScale: this.get('avatarScale')
+      avatarScale: this.get('avatarScale'),
+      logins: this.get('logins')
     };
   }
 }
