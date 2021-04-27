@@ -4,6 +4,7 @@ import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { GraphQLUpload } from 'graphql-upload';
 
 import { getUser, checkPasswordResetCode, updateUser, requestPasswordReset, resetPassword } from "./queries/user";
+import { getUserDepartures } from "./queries/terminals";
 import { uploadAvatar } from "./queries/account";
 
 export const schema = addResolversToSchema({
@@ -15,6 +16,7 @@ export const schema = addResolversToSchema({
   resolvers: {
     Query: {
       getUser,
+      getUserDepartures,
       checkPasswordResetCode
     },
     Mutation: {

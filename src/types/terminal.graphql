@@ -1,0 +1,22 @@
+type Terminal {
+  uuid: String!,
+  type: String!,
+  transport: String!,
+  transportId: String,
+  description: String,
+  date: String,
+  time: String,
+  localityUuid: String,
+  locality: String,
+  localityLong: String,
+  formattedAddress: String,
+  localDateTime: String,
+  utcDateTime: String,
+  priceAmount: Float,
+  priceCurrency: String,
+  priceType: String,
+  priceTerminal: Terminal,
+  linkedTerminal: Terminal,
+  checkInUuid: String,
+  linkCount: Int
+}

@@ -2,6 +2,7 @@ scalar Upload
 
 type Query {
   getUser(uuid: String): User,
+  getUserDepartures(checkInUuid: String): [Terminal]
   checkPasswordResetCode(code: String): String
 }
 
