@@ -7,6 +7,9 @@ export const getUserDepartures = async (parent, args, { user }) => {
   const { checkInUuid } = args;
 
   log.info(`graphql-request=get-user-departures check-in=${checkInUuid} user=${user ? user.uuid : null}`);
+
+  if (!user) return [];
+  
   const userId = await userRepository.getUserIdByUuid(user.uuid);
 
   let trip = await tripRepository.getLastStartedTrip(userId, new Date());
