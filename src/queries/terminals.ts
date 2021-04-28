@@ -6,8 +6,7 @@ export const getUserDepartures = async (parent, args, { user }) => {
 
   const { checkInUuid } = args;
 
-  console.log(`graphql-request=get-user-departures check-in=${checkInUuid} user=${user ? user.uuid : null}`);
-  console.log('user', user);
+  log.debug(`graphql-request=get-user-departures check-in=${checkInUuid} user=${user ? user.uuid : null}`);
 
   if (!user) return [];
 
@@ -15,7 +14,7 @@ export const getUserDepartures = async (parent, args, { user }) => {
 
   let trip = await tripRepository.getLastStartedTrip(userId, new Date());
   console.log('TRIP 1', trip);
-  if ((!trip || !trip.lastCheckInId) && checkInUuid) {
+  if ((!trip || trip.lastCheckInId) && checkInUuid) {
     const checkInId = await checkInRepository.getCheckInIdByUuid(checkInUuid);
     trip = await tripRepository.getTripByCheckInId(checkInId);
   }
@@ -24,7 +23,7 @@ export const getUserDepartures = async (parent, args, { user }) => {
   let terminals = [];
   if (trip) terminals = await terminalRepository.getTripDepartures(userId, trip.id);
 
-  console.log('terminals', terminals);
+  console.log('terminals', terminals.length);
 
   return terminals.map(terminal => terminal.json());
 
