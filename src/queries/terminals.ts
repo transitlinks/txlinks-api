@@ -9,11 +9,11 @@ export const getUserDepartures = async (parent, args, { user }) => {
   log.info(`graphql-request=get-user-departures check-in=${checkInUuid} user=${user ? user.uuid : null}`);
 
   if (!user) return [];
-  
+
   const userId = await userRepository.getUserIdByUuid(user.uuid);
 
   let trip = await tripRepository.getLastStartedTrip(userId, new Date());
-  if ((!trip || trip.lastCheckInId) && checkInUuid) {
+  if ((!trip || !trip.lastCheckInId) && checkInUuid) {
     const checkInId = await checkInRepository.getCheckInIdByUuid(checkInUuid);
     trip = await tripRepository.getTripByCheckInId(checkInId);
   }
